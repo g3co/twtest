@@ -12,6 +12,7 @@ go test  -coverprofile cover.out ./...
 ## API endpoints
 #### GET /block
 Returns last parsed block
+
 **Response**
 ```json
 {
@@ -20,6 +21,7 @@ Returns last parsed block
 ```
 #### GET /address/{address}
 Returns all transactions to the requested address
+
 **Response**
 ```json
 [
