@@ -1,4 +1,2 @@
-/.idea/.gitignore
-/.idea/modules.xml
-/.idea/twtest.iml
-/.idea/vcs.xml
+/.idea
+cover.out

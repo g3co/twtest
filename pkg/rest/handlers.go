@@ -19,7 +19,7 @@ type handler struct {
 }
 
 // CurrentBlockHandler returns current block
-func (h *handler) CurrentBlockHandler(w http.ResponseWriter, req *http.Request) {
+func (h *handler) CurrentBlockHandler(w http.ResponseWriter, _ *http.Request) {
 	resp := struct {
 		CurrentBlock int `json:"current_block"`
 	}{

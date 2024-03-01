@@ -9,6 +9,9 @@ import (
 	"time"
 )
 
+const pullingInterval = time.Second * 1
+
+//go:generate mockgen -source=service.go -destination=mock/service_mock.go
 type storageProvider interface {
 	GetCurrentBlock() (string, error)
 	AddAddress(address string) error
@@ -37,7 +40,7 @@ func NewService(
 }
 
 func (s *Service) Run(ctx context.Context) error {
-	ticker := time.NewTicker(time.Second * 1)
+	ticker := time.NewTicker(pullingInterval)
 	defer func() {
 		ticker.Stop()
 	}()
@@ -79,7 +82,6 @@ func (s *Service) processBlock() error {
 		chainBlockNum, len(block.Transactions))
 
 	for _, tx := range block.Transactions {
-		log.Println(tx.From, tx.To)
 		if txErr := s.storage.SaveTX(tx); txErr != nil {
 			log.Printf("Failed to save transaction %s Err: %s\n", tx.Hash, err)
 		}
